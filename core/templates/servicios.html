@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Servicios{% endblock %}
+{% block content %}
+<h1>Servicios</h1>
+<p>Detalle de los servicios que ofrecemos en el taller.</p>
+
+<div class="list-group">
+  {% for s in lista_servicios %}
+  <div class="list-group-item">
+    <div class="d-flex align-items-start">
+      <!-- icono al costado -->
+      <img src="{% static 'img/iconos/alineacion-de-ruedas.png' %}" alt="" style="width:48px;height:48px;margin-right:12px;">
+      <div>
+        <h5>{{ s.titulo }}</h5>
+        <p class="mb-0">{{ s.detalle }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

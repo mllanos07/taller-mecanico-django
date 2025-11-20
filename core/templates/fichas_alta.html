@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Alta Ficha Técnica{% endblock %}
+{% block content %}
+<h2>Alta Ficha Técnica</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-2">
+    <label>Nro Ficha</label>
+    <input type="text" name="nro_ficha" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Código Cliente</label>
+    <input type="text" name="cod_cliente" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Vehículo</label>
+    <input type="text" name="vehiculo" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Subtotal</label>
+    <input type="text" name="subtotal" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Mano de Obra</label>
+    <input type="text" name="mano_obra" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Total General</label>
+    <input type="text" name="total_general" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">Guardar</button>
+  <a href="{% url 'lista_fichas' %}" class="btn btn-secondary">Volver</a>
+</form>
+{% endblock %}

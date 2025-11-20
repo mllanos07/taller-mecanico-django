@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Modificar Presupuesto{% endblock %}
+{% block content %}
+<h2>Modificar Presupuesto</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-2">
+    <label>Nro Presupuesto</label>
+    <input type="text" name="nro_presupuesto" class="form-control" value="{{ presupuesto.nro_presupuesto }}" readonly>
+  </div>
+  <div class="mb-2">
+    <label>Código Cliente</label>
+    <input type="text" name="cod_cliente" class="form-control" value="{{ presupuesto.cod_cliente }}" required>
+  </div>
+  <div class="mb-2">
+    <label>Descripción</label>
+    <input type="text" name="descripcion" class="form-control" value="{{ presupuesto.descripcion }}" required>
+  </div>
+  <div class="mb-2">
+    <label>Total Presupuesto</label>
+    <input type="text" name="total_presupuesto" class="form-control" value="{{ presupuesto.total_presupuesto }}" required>
+  </div>
+  <div class="mb-2">
+    <label>Total Gastado</label>
+    <input type="text" name="total_gastado" class="form-control" value="{{ presupuesto.total_gastado }}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  <a href="{% url 'lista_presupuestos' %}" class="btn btn-secondary">Volver</a>
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cotización{% endblock %}
+{% block content %}
+<h1>Solicitar Cotización</h1>
+<form method="post" class="mb-4">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Nombre</label>
+      <input name="nombre" class="form-control" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Teléfono</label>
+      <input name="telefono" class="form-control">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Vehículo (marca/modelo)</label>
+      <input name="vehiculo" class="form-control">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Servicio solicitado</label>
+      <select name="servicio" class="form-select">
+        {% for s in servicios %}
+        <option value="{{ s }}">{{ s }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-success">Enviar solicitud</button>
+</form>
+<p class="text-muted">(*) Nuestro equipo se comunicará por teléfono o email con la cotización.</p>
+
+<div class="mt-4">
+  <img src="{% static 'img/iconos/Presupuesto.png' %}" alt="presupuesto" style="width:80px;">
+  <img src="{% static 'img/iconos/Ficha.png' %}" alt="ficha" style="width:80px;margin-left:12px;">
+</div>
+{% endblock %}

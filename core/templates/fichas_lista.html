@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Fichas Técnicas{% endblock %}
+{% block content %}
+<h2>Gestión de Fichas Técnicas</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nro Ficha</th>
+      <th>Código Cliente</th>
+      <th>Vehículo</th>
+      <th>Subtotal</th>
+      <th>Mano de Obra</th>
+      <th>Total General</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for f in fichas %}
+    <tr>
+      <td>{{ f.nro_ficha }}</td>
+      <td>{{ f.cod_cliente }}</td>
+      <td>{{ f.vehiculo }}</td>
+      <td>{{ f.subtotal }}</td>
+      <td>{{ f.mano_obra }}</td>
+      <td>{{ f.total_general }}</td>
+      <td>
+        <a href="{% url 'modificar_ficha' f.nro_ficha %}" class="btn btn-primary btn-sm">Modificar</a>
+        <a href="{% url 'eliminar_ficha' f.nro_ficha %}" class="btn btn-danger btn-sm">Eliminar</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="7">No hay fichas técnicas registradas.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+<h3>Alta Ficha Técnica</h3>
+<form method="post" action="{% url 'alta_ficha' %}">
+  {% csrf_token %}
+  <div class="mb-2">
+    <label>Nro Ficha</label>
+    <input type="text" name="nro_ficha" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Código Cliente</label>
+    <input type="text" name="cod_cliente" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Vehículo</label>
+    <input type="text" name="vehiculo" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Subtotal</label>
+    <input type="text" name="subtotal" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Mano de Obra</label>
+    <input type="text" name="mano_obra" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Total General</label>
+    <input type="text" name="total_general" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Empleados{% endblock %}
+{% block content %}
+<h2>Gestión de Empleados</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Legajo</th>
+      <th>DNI</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in empleados %}
+    <tr>
+      <td>{{ e.legajo }}</td>
+      <td>{{ e.dni }}</td>
+      <td>{{ e.nombre }}</td>
+      <td>{{ e.apellido }}</td>
+      <td>
+        <a href="?modificar={{ e.legajo }}" class="btn btn-primary btn-sm">Modificar</a>
+        <a href="{% url 'eliminar_empleado' e.legajo %}" class="btn btn-danger btn-sm">Eliminar</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No hay empleados registrados.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+{% if empleado %}
+  <h3>Modificar Empleado</h3>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="modificar" value="1">
+    <div class="mb-2">
+      <label>Legajo</label>
+      <input type="text" name="legajo" class="form-control" value="{{ empleado.legajo }}" readonly>
+    </div>
+    <div class="mb-2">
+      <label>DNI</label>
+      <input type="text" name="dni" class="form-control" value="{{ empleado.dni }}" readonly>
+    </div>
+    <div class="mb-2">
+      <label>Nombre</label>
+      <input type="text" name="nombre" class="form-control" value="{{ empleado.nombre }}" required>
+    </div>
+    <div class="mb-2">
+      <label>Apellido</label>
+      <input type="text" name="apellido" class="form-control" value="{{ empleado.apellido }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    <a href="{% url 'lista_empleados' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% else %}
+  <h3>Alta Empleado</h3>
+  <form method="post" action="{% url 'alta_empleado' %}">
+    {% csrf_token %}
+    <div class="mb-2">
+      <label>Legajo</label>
+      <input type="text" name="legajo" class="form-control" required>
+    </div>
+    <div class="mb-2">
+      <label>DNI</label>
+      <input type="text" name="dni" class="form-control" required>
+    </div>
+    <div class="mb-2">
+      <label>Nombre</label>
+      <input type="text" name="nombre" class="form-control" required>
+    </div>
+    <div class="mb-2">
+      <label>Apellido</label>
+      <input type="text" name="apellido" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+  </form>
+{% endif %}
+
+{% endblock %}

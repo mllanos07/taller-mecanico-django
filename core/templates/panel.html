@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Panel de Gestión{% endblock %}
+{% block content %}
+<h1>Panel de Gestión</h1>
+<p>Bienvenido, {{ username }} ({{ user_type }})</p>
+{% if user_type == "admin" %}
+  <a href="{% url 'lista_empleados' %}" class="btn btn-outline-primary mb-2">Gestión de Empleados</a><br>
+  <a href="{% url 'lista_fichas' %}" class="btn btn-outline-primary mb-2">Gestión de Fichas Técnicas</a><br>
+  <a href="{% url 'lista_presupuestos' %}" class="btn btn-outline-primary mb-2">Gestión de Presupuestos</a><br>
+{% elif user_type == "empleado" %}
+  <a href="#">Ver Empleados</a><br>
+  <a href="#">Ver Fichas Técnicas</a><br>
+  <a href="#">Ver Presupuestos</a><br>
+{% endif %}
+<a href="/">Volver al inicio</a>
+{% endblock %}

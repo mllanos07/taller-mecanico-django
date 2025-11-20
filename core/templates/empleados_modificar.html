@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Modificar Empleado{% endblock %}
+{% block content %}
+<h2>Modificar Empleado</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-2">
+    <label>Legajo</label>
+    <input type="text" name="legajo" class="form-control" value="{{ empleado.legajo }}" readonly>
+  </div>
+  <div class="mb-2">
+    <label>DNI</label>
+    <input type="text" name="dni" class="form-control" value="{{ empleado.dni }}" readonly>
+  </div>
+  <div class="mb-2">
+    <label>Nombre</label>
+    <input type="text" name="nombre" class="form-control" value="{{ empleado.nombre }}" required>
+  </div>
+  <div class="mb-2">
+    <label>Apellido</label>
+    <input type="text" name="apellido" class="form-control" value="{{ empleado.apellido }}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  <a href="{% url 'lista_empleados' %}" class="btn btn-secondary">Volver</a>
+</form>
+{% endblock %}

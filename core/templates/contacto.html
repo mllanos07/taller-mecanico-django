@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contacto{% endblock %}
+{% block content %}
+<h1>Contacto y Ubicación</h1>
+<div class="row">
+  <div class="col-md-6">
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input name="nombre" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mensaje</label>
+        <textarea name="mensaje" class="form-control" rows="4" required></textarea>
+      </div>
+      <button class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h5>Visítanos</h5>
+    <p>Calle Falsa 123 - Córdoba - Argentina</p>
+    <div class="ratio ratio-16x9">
+      <iframe src="https://www.google.com/maps?q=Córdoba+Argentina&output=embed" style="border:0;"></iframe>
+    </div>
+  </div>
+</div>
+{% endblock %}

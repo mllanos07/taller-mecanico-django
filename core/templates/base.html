@@ -1,0 +1,72 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taller Mecánico - {% block title %}{% endblock %}</title>
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'img/iconos/auto.png' %}">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'inicio' %}">
+          <img src="{% static 'img/iconos/auto.png' %}" alt="logo" class="logo-small me-2">
+          Taller Mecánico
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'acerca' %}">Quienes Somos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'cotizacion' %}">Cotización</a></li>
+            {% if request.session.user_type == "admin" %}
+              
+              <li class="nav-item"><a class="nav-link" href="{% url 'lista_empleados' %}">Empleados</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'lista_fichas' %}">Fichas Técnicas</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'lista_presupuestos' %}">Presupuestos</a></li>
+            {% elif request.session.user_type == "empleado" %}
+              
+            {% endif %}
+            {% if request.session.user_type %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="{% url 'login_empleados' %}">Iniciar Sesión</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container my-4">
+    {% if messages %}
+      {% for m in messages %}
+        <div class="alert alert-{{ m.tags }} alert-dismissible fade show" role="alert">
+          {{ m }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">© Taller Mecánico - Trabajo práctico - Programación</p>
+      <small>Dirección: Calle Falsa 123 - Tel: (0351) 123-4567</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

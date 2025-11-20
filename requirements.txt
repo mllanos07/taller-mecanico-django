@@ -1,0 +1,12 @@
+# Requisitos del proyecto Taller Mecánico (Django)
+Django==5.0.6
+gunicorn==21.2.0
+whitenoise==6.6.0
+
+# Herramientas opcionales para desarrollo
+django-bootstrap5==24.2
+requests==2.32.3
+Pillow==10.3.0
+
+# Para manejo de variables de entorno (opcional)
+python-dotenv==1.0.1

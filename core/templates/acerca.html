@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Quienes Somos{% endblock %}
+{% block content %}
+
+<h1>Acerca de Taller Mecánico</h1>
+<p><strong>Misión:</strong> {{ mision }}</p>
+<p><strong>Visión:</strong> {{ vision }}</p>
+<p><strong>Historia:</strong> {{ historia }}</p>
+
+<h3 class="mt-4">Nuestro equipo</h3>
+
+<div class="row">
+
+  <!-- Persona 1 -->
+  <div class="col-md-4 my-2">
+    <div class="card card-custom">
+      <img src="{% static 'img/iconos/ulla.png' %}" class="card-img-top" alt="empleado">
+      <div class="card-body">
+        <h5 class="card-title">Mateo Ulla</h5>
+        <p class="card-text">Jefe de taller</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persona 2 -->
+  <div class="col-md-4 my-2">
+    <div class="card card-custom">
+      <img src="{% static 'img/iconos/matias3.png' %}" class="card-img-top" alt="empleado">
+      <div class="card-body">
+        <h5 class="card-title">Matías Llanos</h5>
+        <p class="card-text">Técnico mecánico</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persona 3 -->
+  <div class="col-md-4 my-2">
+    <div class="card card-custom">
+      <img src="{% static 'img/iconos/machi.png' %}" class="card-img-top" alt="empleado">
+      <div class="card-body">
+        <h5 class="card-title">Santino Macchiarola</h5>
+        <p class="card-text">Administración</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Persona 4 -->
+  <div class="col-md-4 my-2">
+    <div class="card card-custom">
+      <img src="{% static 'img/iconos/daer.png' %}" class="card-img-top" alt="empleado">
+      <div class="card-body">
+        <h5 class="card-title">Oriana Daer</h5>
+        <p class="card-text">Secretaria</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

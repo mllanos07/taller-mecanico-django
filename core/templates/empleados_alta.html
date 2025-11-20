@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Alta Empleado{% endblock %}
+{% block content %}
+<h2>Alta Empleado</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-2">
+    <label>Legajo</label>
+    <input type="text" name="legajo" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>DNI</label>
+    <input type="text" name="dni" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Nombre</label>
+    <input type="text" name="nombre" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Apellido</label>
+    <input type="text" name="apellido" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">Guardar</button>
+  <a href="{% url 'lista_empleados' %}" class="btn btn-secondary">Volver</a>
+</form>
+{% endblock %}

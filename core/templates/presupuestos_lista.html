@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Presupuestos{% endblock %}
+{% block content %}
+<h2>Lista de Presupuestos</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nro Presupuesto</th>
+      <th>Código Cliente</th>
+      <th>Descripción</th>
+      <th>Total Presupuesto</th>
+      <th>Total Gastado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in presupuestos %}
+    <tr>
+      <td>{{ p.nro_presupuesto }}</td>
+      <td>{{ p.cod_cliente }}</td>
+      <td>{{ p.descripcion }}</td>
+      <td>{{ p.total_presupuesto }}</td>
+      <td>{{ p.total_gastado }}</td>
+      <td>
+        <a href="{% url 'modificar_presupuesto' p.nro_presupuesto %}" class="btn btn-primary btn-sm">Modificar</a>
+        <a href="{% url 'eliminar_presupuesto' p.nro_presupuesto %}" class="btn btn-danger btn-sm">Eliminar</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">No hay presupuestos registrados.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr>
+<h3>Alta Presupuesto</h3>
+<form method="post" action="{% url 'lista_presupuestos' %}">
+  {% csrf_token %}
+  <div class="mb-2">
+    <label>Nro Presupuesto</label>
+    <input type="text" name="nro_presupuesto" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Código Cliente</label>
+    <input type="text" name="cod_cliente" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Descripción</label>
+    <input type="text" name="descripcion" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Total Presupuesto</label>
+    <input type="text" name="total_presupuesto" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label>Total Gastado</label>
+    <input type="text" name="total_gastado" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}
